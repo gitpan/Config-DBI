@@ -4,7 +4,7 @@ use ExtUtils::MakeMaker;
 # the contents of the Makefile that is written.
 WriteMakefile(
     'NAME'		=> 'Config::DBI',
-    'VERSION_FROM'	=> 'DBI.pm', # finds $VERSION
+    'VERSION_FROM'	=> 'lib/Config/DBI.pm', # finds $VERSION
     'PREREQ_PM'		=> {
 
 			    Config::ApacheFormat => 1.2,
