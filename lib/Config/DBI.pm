@@ -32,7 +32,8 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.05';
+our $VERSION = sprintf '%s', q$Revision: 1.4 $ =~ /Revision:\s+(\S+)\s+/ ;
+
 
 my $stdin = '<STDIN>';
 
@@ -395,5 +396,7 @@ Copyright 2003 by Terrence Brannon
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself. 
+
+Many thanks for Dan Kubb for his input on this module.
 
 =cut
