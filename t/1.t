@@ -7,8 +7,8 @@ use Data::Dumper;
 
 # change 'tests => 1' to 'tests => last_test_to_print';
 
-use Test::More tests => 2;
-BEGIN { use_ok('Config::DBI') };
+use Test::More tests => 1;
+BEGIN { $ENV{CONFIG_DBI} = '../dbi.conf'; use_ok('Config::DBI') };
 
 #########################
 
@@ -19,4 +19,4 @@ my %X = Config::DBI->hash('basic');
 
 warn Dumper(\%X);
 
-my $dbh = Config::DBI->basic;
+#my $dbh = Config::DBI->basic;
