@@ -1,5 +1,7 @@
+# -*- perl -*-
 # Before `make install' is performed this script should be runnable with
 # `make test'. After `make install' it should work as `perl 1.t'
+
 
 use Data::Dumper;
 
@@ -7,8 +9,17 @@ use Data::Dumper;
 
 # change 'tests => 1' to 'tests => last_test_to_print';
 
-use Test::More tests => 1;
-BEGIN { $ENV{CONFIG_DBI} = '../dbi.conf'; use_ok('Config::DBI') };
+use Test::More;
+
+if (defined $ENV{CONFIG_DBI}) {
+  plan tests => 1;	
+} else {
+  plan skip_all => 'Cannot run test unless CONFIG_DBI is defined. See docs';
+}
+
+use_ok('Config::DBI');
+
+
 
 #########################
 

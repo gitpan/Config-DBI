@@ -32,7 +32,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = sprintf '%s', q$Revision: 1.5 $ =~ /Revision:\s+(\S+)\s+/ ;
+our $VERSION = sprintf '%s', q$Revision: 1.6 $ =~ /Revision:\s+(\S+)\s+/ ;
 
 
 my $stdin = '<STDIN>';
@@ -41,19 +41,23 @@ our @attr = qw
   (  
    dbi_connect_method
    Warn
-   # Active (boolean, read-only) 
-   # Executed - can't imagine anyone setting this
-   # Kids
-   # ActiveKids
-   # CachedKids
-   # CompatMode
+
+   #Active (boolean, read-only) 
+   #Executed
+   #Kids
+   #ActiveKids
+   #CachedKids
+   #CompatMode
+
    InactiveDestroy
    PrintWarn
    PrintError
    RaiseError
    HandleError
    HandleSetErr
-   # ErrCount
+
+   #ErrCount
+
    ShowErrorStatement
    TraceLevel
    FetchHashKeyName
@@ -64,14 +68,18 @@ our @attr = qw
    TaintOut
    Taint
    Profile
-   # should add support for private_your_module_name_*
+   #should-add-support-for-private_your_module_name_*
+
 
    AutoCommit
-   # Driver
-   # Name
-   # Statement
+
+   #Driver
+   #Name
+   #Statement
+
    RowCacheSize
-   # Username
+
+   #Username
   );
 
 our @valid_directives = ( qw(User Pass DSN), @attr ) ;
