@@ -32,7 +32,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = sprintf '%s', q$Revision: 1.4 $ =~ /Revision:\s+(\S+)\s+/ ;
+our $VERSION = sprintf '%s', q$Revision: 1.5 $ =~ /Revision:\s+(\S+)\s+/ ;
 
 
 my $stdin = '<STDIN>';
@@ -41,10 +41,19 @@ our @attr = qw
   (  
    dbi_connect_method
    Warn
+   # Active (boolean, read-only) 
+   # Executed - can't imagine anyone setting this
+   # Kids
+   # ActiveKids
+   # CachedKids
+   # CompatMode
    InactiveDestroy
+   PrintWarn
    PrintError
    RaiseError
    HandleError
+   HandleSetErr
+   # ErrCount
    ShowErrorStatement
    TraceLevel
    FetchHashKeyName
@@ -55,8 +64,14 @@ our @attr = qw
    TaintOut
    Taint
    Profile
+   # should add support for private_your_module_name_*
 
    AutoCommit
+   # Driver
+   # Name
+   # Statement
+   RowCacheSize
+   # Username
   );
 
 our @valid_directives = ( qw(User Pass DSN), @attr ) ;
@@ -201,17 +216,19 @@ In dbi.conf:
 
  # Other options for this value are: connect_cached, Apache::DBI::connect
 
- dbi_connect_method connect 
+ dbi_connect_method connect
 
  # Attributes common to all handles and settable
  # Listed in the order given in the DBI docs.
- # http://search.cpan.org/~timb/DBI-1.38/DBI.pm#METHODS_COMMON_TO_ALL_HANDLES
+ # http://search.cpan.org/~timb/DBI/DBI.pm#METHODS_COMMON_TO_ALL_HANDLES
 
  Warn 1 
  InactiveDestroy
  PrintError 0 
+ PrintWarn 1
  RaiseError 0 
  HandleError  Exception::Class::DBI->handler
+ HandleSetErr sub { my ($handle, $err, $errstr, $state, $method) = @_; }
  ShowErrorStatement 1
  TraceLevel 0
  FetchHashKeyName NAME_lc
@@ -224,9 +241,10 @@ In dbi.conf:
  Profile 0
  
  # Attributes for database handles
- # http://search.cpan.org/~timb/DBI-1.38/DBI.pm#Database_Handle_Attributes 
+ # http://search.cpan.org/~timb/DBI/DBI.pm#Database_Handle_Attributes 
  
  AutoCommit 0
+ RowCacheSize 0
  
  # Connection info
 
@@ -273,7 +291,7 @@ Config::ApacheFormat.
 This module's main purpose is to provide a way to get DBI database handles
 with very few lines of code. It does also have an API call to get the
 connection data so that you can do what you want with it. This is useful
-when one is using DBIx::AnyDBD or some other package which has 
+when one is using DBIx::AnyDBD, Alzabo or some other package which has 
 different conventions for creating DBI C<dbh>s.
 
 
@@ -390,6 +408,8 @@ Terrence Brannon, E<lt>tbone@cpan.orgE<gt>
 
 Thanks for Perrin Harkins for mentioning Config::ApacheFormat
 
+Thanks for Sam Tregar for writing Config::ApacheFormat.
+
 =head1 COPYRIGHT AND LICENSE
 
 Copyright 2003 by Terrence Brannon
@@ -397,6 +417,7 @@ Copyright 2003 by Terrence Brannon
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself. 
 
-Many thanks for Dan Kubb for his input on this module.
+Many thanks for Dan Kubb for his input on this module and also for
+alerting me to new attributes as of DBI 1.45.
 
 =cut

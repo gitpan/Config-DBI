@@ -1,7 +1,7 @@
 # http://module-build.sourceforge.net/META-spec.html
 #XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
 name:         Config-DBI
-version:      1.4
+version:      1.5
 version_from: lib/Config/DBI.pm
 installdirs:  site
 requires:
@@ -10,4 +10,4 @@ requires:
     Term::ReadKey:                 2.21
 
 distribution_type: module
-generated_by: ExtUtils::MakeMaker version 6.16
+generated_by: ExtUtils::MakeMaker version 6.17
