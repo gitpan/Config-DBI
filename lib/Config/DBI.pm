@@ -32,7 +32,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 my $stdin = '<STDIN>';
 
@@ -213,7 +213,7 @@ In dbi.conf:
  HandleError  Exception::Class::DBI->handler
  ShowErrorStatement 1
  TraceLevel 0
- FetchHashKeyName 0
+ FetchHashKeyName NAME_lc
  ChopBlanks 0
  LongReadLen 0
  LongTruncOk 0
